@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <title>Notary Blockchain File Registry</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="css/bootstrap.spacelab.min.css">
+  <link rel="stylesheet" href="css/custom-styles.css">
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="http://xtreemsolution.com/" target="_blank">Notary Blockchain File Registry By Xtreem Solution</a>
+    </nav>
+    <div class="container">
+    <div class="row">
+      <div class="col-xs-12" style="height:25px;"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <div class="alert alert-primary mx-auto" role="alert">
+          This application allows notarizing the content of any file, by saving a cryptographic fingerprint onto the Ethereum blockchain. This serves as a timestamped proof that a document existed at a certain time in a certain version. You can verify a document’s integrity by comparing a cryptographic fingerprint. Use cases include private contract registration, copyright protection, log files sealing and many other applications where file integrity is important.
+            <strong>Note: Your documents do not leave your computer.</strong>
+        </div>
+        <div class="alert alert-warning alert-dismissible fade show" style="display:none;" role="alert" id="noWeb3">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="alert-heading">Warning!</h4>
+          <p>
+            <b>No compatible Ethereum provider has been detected in your browser.</b> </br>
+            Fingerprinting a document onto the Ethereum blockchain requires a small payment in Ether (the gas price of a standard Ethereum transaction). To sign the transaction with your Ethereum key and approve the payment you need a Ethereum wallet application able to inject a compatible interface into your browser. We recommend the MetaMask plugin for this. Without a compatible wallet, you may still you this service, but files will be notarized onto the Rinkeby Ethereum test network, rather than the main blockchain network.
+          </p>
+          <p>
+            <a href="https://metamask.io/" target="_blank"><img class="img-fluid" width=200 src="images/download-metamask.png"/></a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12" style="height:25px;"></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <div class="card mx-auto">
+              <div class="card-body">
+                <h4 class="card-title">Fingerprint File</h4>
+                <p class="card-text">Please select a file to create a timestamped
+                  cryptographic fingerprint on the Ethereum Blockchain.<br />
+
+                </p>
+
+                <div class="form-group">
+                  <label class="custom-file">
+                    <input type="file" id="hashFile" class="custom-file-input">
+                    <span class="custom-file-control" data-content="Choose file..."></span>
+                  </label>
+                </div>
+                <div class="form-group">
+                  <button type='button' id="sendHashButton" onclick="send()" class="btn btn-primary"/>
+                    Fingerprint to Blockchain
+                  </button>
+                  <button type='button' id= "findHashButton" onclick="find()" class="btn btn-primary"/>
+                    Find on Blockchain
+                  </button>
+                </div>
+                <div class="alert mx-auto" style="display:none;" id="response" role="alert">
+                  <h4>Blockchain Response</h4>
+                  <div id=responseText></div>
+                  <div class="form-group">
+                    <button type='button' id="clearButton" onclick="clearResponse()" class="btn btn-primary"/>
+                      Clear
+                    </button>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" style="height:25px;"></div>
+      </div>
+  </div>
+</div>
+</div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/sha256.js"></script>
+<script src="js/web3.min.js"></script>
+<script src="js/notaryLib.js"></script>
+<script src="js/app.js"></script>
+</body>
+<footer class="text-center"><small>&copy; 2019 Xtreem Solution</small></footer>
+</html>

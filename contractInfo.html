@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <title>Notary Blockchain File Registry</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="css/bootstrap.spacelab.min.css">
+  <link rel="stylesheet" href="css/custom-styles.css">
+  <link rel="stylesheet" href="css/prism.css">
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">Blockchain Certification</a>
+      <ul class="navbar-nav mr-auto">
+
+        <div class="collapse navbar-collapse">
+
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link active" href="contractInfo.html">Smart Contract<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="sourceCode.html">Source Code</a>
+          </li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-12" style="height:25px;"></div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm">
+          <p>
+            You can interact with the smart contract deployed on the Ethereum
+            blockchain without using this web application.
+            You can do so by configuring your own Ethereum wallet or by writing your own front-end.
+          </p>
+          <p>
+            The contract is deployed on the main Ethereum network at the following address:
+             <a href="https://etherscan.io/address/0x67bFE8893d892B8B2ddE809A7FDA6caE934d0a9b">0x67bFE8893d892B8B2ddE809A7FDA6caE934d0a9b</a>.
+          </p>
+
+          <p>
+            It is also deployed on the following test networks:
+          </p>
+          <p>
+            Ropsten:
+            <a href="https://ropsten.etherscan.io/address/0x318914AE4ee285DBb7760d32242c816781AB2e97">0x318914AE4ee285DBb7760d32242c816781AB2e97</a><br />
+            Rinkeby:
+            <a href="https://rinkeby.etherscan.io/address/0xd121f94184da71908123a1e08f72cab8573b9363">0xd121f94184Da71908123a1e08F72cAB8573b9363</a><br />
+            Kovan:
+            <a href="https://kovan.etherscan.io/address/0x62dbf3f3ff221e383d7c696e706356cdb86fae56">0x62dbf3f3ff221e383d7c696e706356cdb86fae56</a>
+          </p>
+          <p>
+            The following is the contract ABI:
+          </p>
+
+
+          <pre data-src="js/abi.js"></pre>
+
+
+        </div>
+      </div>
+
+    </div>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/prism.js"></script>
+
+
+</body>
+<footer class="text-center"><small>&copy; 2018 Stefan Beyer</small></footer>
+</html>

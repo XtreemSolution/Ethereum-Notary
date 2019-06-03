@@ -1,0 +1,2560 @@
+{
+  "contractName": "Notary",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "name": "hash",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function",
+      "constant": false,
+      "name": "addDocHash",
+      "outputs": []
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "hash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "findDocHash",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256",
+          "components": [
+            {
+              "name": "mineTime",
+              "type": "uint256"
+            },
+            {
+              "name": "blockNumber",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor",
+      "constant": true,
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ]
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x6060604052341561000f57600080fd5b61019d8061001e6000396000f30060606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063133a48f3146100515780634cf00d3f14610078575b600080fd5b341561005c57600080fd5b6100766004808035600019169060200190919050506100ba565b005b341561008357600080fd5b61009d60048080356000191690602001909190505061010f565b604051808381526020018281526020019250505060405180910390f35b6100c2610157565b604080519081016040528042815260200143815250905080600080846000191660001916815260200190815260200160002060008201518160000155602082015181600101559050505050565b60008060008084600019166000191681526020019081526020016000206000015460008085600019166000191681526020019081526020016000206001015491509150915091565b6040805190810160405280600081526020016000815250905600a165627a7a723058207c0d220e1af0253e6327f5182eba455ffd8503190b6b8061a686593a6db4775b0029",
+  "deployedBytecode": "0x60606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063133a48f3146100515780634cf00d3f14610078575b600080fd5b341561005c57600080fd5b6100766004808035600019169060200190919050506100ba565b005b341561008357600080fd5b61009d60048080356000191690602001909190505061010f565b604051808381526020018281526020019250505060405180910390f35b6100c2610157565b604080519081016040528042815260200143815250905080600080846000191660001916815260200190815260200160002060008201518160000155602082015181600101559050505050565b60008060008084600019166000191681526020019081526020016000206000015460008085600019166000191681526020019081526020016000206001015491509150915091565b6040805190810160405280600081526020016000815250905600a165627a7a723058207c0d220e1af0253e6327f5182eba455ffd8503190b6b8061a686593a6db4775b0029",
+  "sourceMap": "26:482:0:-;;;165:49;;;;;;;;26:482;;;;;;",
+  "deployedSourceMap": "26:482:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;218:138;;;;;;;;;;;;;;;;;;;;;;;;;;;;;360:145;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;218:138;266:23;;:::i;:::-;292:25;;;;;;;;;299:3;292:25;;;;304:12;292:25;;;266:51;;341:9;323;:15;333:4;323:15;;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;;218:138;;:::o;360:145::-;420:4;426;446:9;:15;456:4;446:15;;;;;;;;;;;;;;;;;:24;;;472:9;:15;482:4;472:15;;;;;;;;;;;;;;;;;:27;;;438:62;;;;360:145;;;:::o;26:482::-;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.4.4;\n\n\ncontract Notary {\n\n  struct Record {\n      uint mineTime;\n      uint blockNumber;\n  }\n\n  mapping (bytes32 => Record) private docHashes;\n\n  function Notary() public {\n    // constructor\n  }\n\n  function addDocHash (bytes32 hash) public {\n    Record memory newRecord = Record(now, block.number);\n    docHashes[hash] = newRecord;\n\n  }\n\n  function findDocHash (bytes32 hash) public constant returns(uint, uint) {\n    return (docHashes[hash].mineTime, docHashes[hash].blockNumber);\n  }\n\n}\n",
+  "sourcePath": "/Users/stefan/blockchain/ethereum/notary/contracts/Notary.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/Users/stefan/blockchain/ethereum/notary/contracts/Notary.sol",
+      "exportedSymbols": {
+        "Notary": [
+          55
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".4"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "0:23:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            55
+          ],
+          "name": "Notary",
+          "scope": 56,
+          "SourceUnit": 117,
+          "absolutePath": "zeppelin-solidity/contracts/ownership/Ownable.sol",
+          "file": "zeppelin-solidity/contracts/ownership/Ownable.sol",
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "Record",
+              "scope": 55,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(bytes32 => bool)",
+              "value": null,
+              "visibility": "public",
+              "canonicalName": "Notary.Record"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "uint256",
+                  "constant": false,
+                  "name": "mineTime",
+                  "scope": 6,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 2,
+                    "name": "ElementaryTypeName",
+                    "src": "69:4:0"
+                  },
+                  {
+                    "attributes": {
+                      "name": "bool",
+                      "type": "bool"
+                    },
+                    "id": 3,
+                    "name": "ElementaryTypeName",
+                    "src": "66:4:0"
+                  }
+                ],
+                "id": 3,
+                "name": "VariableDeclaration",
+                "src": "69:13:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "blockNumber",
+                  "scope": 6,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 4,
+                    "name": "ElementaryTypeName",
+                    "src": "90:4:0"
+                  }
+                ],
+                "id": 5,
+                "name": "VariableDeclaration",
+                "src": "90:16:0"
+              }
+            ],
+            "id": 6,
+            "name": "StructDefinition",
+            "src": "47:64:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "docHashes",
+              "payable": false,
+              "scope": 55,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "private",
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+              "value": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ],
+                  "type": "mapping(bytes32 => struct Notary.Record storage ref)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 7,
+                    "name": "ElementaryTypeName",
+                    "src": "124:7:0"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Record",
+                      "referencedDeclaration": 6,
+                      "type": "struct Notary.Record storage pointer"
+                    },
+                    "id": 8,
+                    "name": "UserDefinedTypeName",
+                    "src": "135:6:0"
+                  }
+                ],
+                "id": 9,
+                "name": "Mapping",
+                "src": "115:27:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7,
+                "name": "ParameterList",
+                "src": "112:0:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 8,
+                "name": "Block",
+                "src": "112:24:0"
+              }
+            ],
+            "id": 10,
+            "name": "VariableDeclaration",
+            "src": "115:45:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "Notary",
+              "payable": false,
+              "scope": 55,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "hash",
+                      "scope": 21,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 10,
+                        "name": "ElementaryTypeName",
+                        "src": "161:7:0"
+                      }
+                    ],
+                    "id": 11,
+                    "name": "VariableDeclaration",
+                    "src": "161:12:0"
+                  }
+                ],
+                "id": 11,
+                "name": "ParameterList",
+                "src": "180:2:0",
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                }
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 12,
+                "name": "ParameterList",
+                "src": "190:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 5,
+                                  "type": "mapping(bytes32 => bool)",
+                                  "value": "docHashes"
+                                },
+                                "id": 14,
+                                "name": "Identifier",
+                                "src": "181:9:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 11,
+                                  "type": "bytes32",
+                                  "value": "hash"
+                                },
+                                "id": 15,
+                                "name": "Identifier",
+                                "src": "191:4:0"
+                              }
+                            ],
+                            "id": 16,
+                            "name": "IndexAccess",
+                            "src": "181:15:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "74727565",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "bool",
+                              "type": "bool",
+                              "value": "true"
+                            },
+                            "id": 17,
+                            "name": "Literal",
+                            "src": "199:4:0"
+                          }
+                        ],
+                        "id": 18,
+                        "name": "Assignment",
+                        "src": "181:22:0"
+                      }
+                    ],
+                    "id": 19,
+                    "name": "ExpressionStatement",
+                    "src": "181:22:0"
+                  }
+                ],
+                "id": 13,
+                "name": "Block",
+                "src": "190:24:0",
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                }
+              }
+            ],
+            "id": 14,
+            "name": "FunctionDefinition",
+            "src": "165:49:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "addDocHash",
+              "payable": false,
+              "scope": 55,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "hash",
+                      "scope": 34,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 15,
+                        "name": "ElementaryTypeName",
+                        "src": "239:7:0"
+                      }
+                    ],
+                    "id": 16,
+                    "name": "VariableDeclaration",
+                    "src": "239:12:0"
+                  }
+                ],
+                "id": 17,
+                "name": "ParameterList",
+                "src": "238:14:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 33,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 25,
+                        "name": "ElementaryTypeName",
+                        "src": "265:4:0"
+                      }
+                    ],
+                    "id": 26,
+                    "name": "VariableDeclaration",
+                    "src": "265:4:0"
+                  }
+                ],
+                "id": 18,
+                "name": "ParameterList",
+                "src": "260:0:0",
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                }
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 27,
+                      "assignments": [
+                        20
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "struct Notary.Record memory",
+                          "operator": "=",
+                          "constant": false,
+                          "name": "newRecord",
+                          "scope": 34,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6,
+                              "type": "struct Notary.Record storage pointer",
+                              "value": "docHashes",
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "contractScope": null,
+                              "name": "Record"
+                            },
+                            "id": 19,
+                            "name": "UserDefinedTypeName",
+                            "src": "266:6:0",
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10,
+                                  "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+                                  "value": "docHashes"
+                                },
+                                "id": 19,
+                                "name": "Identifier",
+                                "src": "251:9:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 16,
+                                  "type": "bytes32",
+                                  "value": "hash"
+                                },
+                                "id": 20,
+                                "name": "Identifier",
+                                "src": "261:4:0"
+                              }
+                            ]
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 23,
+                              "type": "struct Notary.Record memory",
+                              "value": "hash",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": true,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type_conversion": false
+                            },
+                            "id": 26,
+                            "name": "FunctionCall",
+                            "src": "269:25:0",
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 6,
+                                  "type": "type(struct Notary.Record storage pointer)",
+                                  "value": "Record"
+                                },
+                                "id": 22,
+                                "name": "Identifier",
+                                "src": "269:6:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 57,
+                                  "type": "uint256",
+                                  "value": "now"
+                                },
+                                "id": 23,
+                                "name": "Identifier",
+                                "src": "276:3:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "number",
+                                  "referencedDeclaration": null,
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 47,
+                                      "type": "block",
+                                      "value": "block"
+                                    },
+                                    "id": 24,
+                                    "name": "Identifier",
+                                    "src": "281:5:0"
+                                  }
+                                ],
+                                "id": 25,
+                                "name": "MemberAccess",
+                                "src": "281:12:0"
+                              }
+                            ]
+                          }
+                        ],
+                        "id": 20,
+                        "name": "VariableDeclaration",
+                        "src": "266:23:0"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": true,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "struct Notary.Record memory",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6,
+                              "type": "type(struct Notary.Record storage pointer)",
+                              "value": "Record"
+                            },
+                            "id": 21,
+                            "name": "Identifier",
+                            "src": "292:6:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 69,
+                              "type": "uint256",
+                              "value": "now"
+                            },
+                            "id": 22,
+                            "name": "Identifier",
+                            "src": "299:3:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "number",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 59,
+                                  "type": "block",
+                                  "value": "block"
+                                },
+                                "id": 23,
+                                "name": "Identifier",
+                                "src": "304:5:0"
+                              }
+                            ],
+                            "id": 24,
+                            "name": "MemberAccess",
+                            "src": "304:12:0"
+                          }
+                        ],
+                        "id": 25,
+                        "name": "FunctionCall",
+                        "src": "292:25:0"
+                      }
+                    ],
+                    "id": 26,
+                    "name": "VariableDeclarationStatement",
+                    "src": "266:51:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "struct Notary.Record storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "struct Notary.Record storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10,
+                                  "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+                                  "value": "docHashes"
+                                },
+                                "id": 27,
+                                "name": "Identifier",
+                                "src": "323:9:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 16,
+                                  "type": "bytes32",
+                                  "value": "hash"
+                                },
+                                "id": 28,
+                                "name": "Identifier",
+                                "src": "333:4:0"
+                              }
+                            ],
+                            "id": 29,
+                            "name": "IndexAccess",
+                            "src": "323:15:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 20,
+                              "type": "struct Notary.Record memory",
+                              "value": "newRecord"
+                            },
+                            "id": 30,
+                            "name": "Identifier",
+                            "src": "341:9:0"
+                          }
+                        ],
+                        "id": 31,
+                        "name": "Assignment",
+                        "src": "323:27:0"
+                      }
+                    ],
+                    "id": 32,
+                    "name": "ExpressionStatement",
+                    "src": "323:27:0"
+                  }
+                ],
+                "id": 33,
+                "name": "Block",
+                "src": "260:96:0"
+              }
+            ],
+            "id": 34,
+            "name": "FunctionDefinition",
+            "src": "218:138:0"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "findDocHash",
+              "payable": false,
+              "scope": 55,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "hash",
+                      "scope": 54,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 35,
+                        "name": "ElementaryTypeName",
+                        "src": "382:7:0"
+                      }
+                    ],
+                    "id": 36,
+                    "name": "VariableDeclaration",
+                    "src": "382:12:0"
+                  }
+                ],
+                "id": 37,
+                "name": "ParameterList",
+                "src": "381:14:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 54,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "uint",
+                          "referencedDeclaration": 6,
+                          "type": "uint256"
+                        },
+                        "id": 38,
+                        "name": "ElementaryTypeName",
+                        "src": "420:4:0"
+                      }
+                    ],
+                    "id": 39,
+                    "name": "VariableDeclaration",
+                    "src": "420:4:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 54,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 40,
+                        "name": "ElementaryTypeName",
+                        "src": "426:4:0"
+                      }
+                    ],
+                    "id": 41,
+                    "name": "VariableDeclaration",
+                    "src": "426:4:0"
+                  }
+                ],
+                "id": 42,
+                "name": "ParameterList",
+                "src": "419:12:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 42
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "tuple(uint256,uint256)",
+                          "isInlineArray": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 3,
+                              "type": "uint256",
+                              "value": "docHashes",
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "mineTime"
+                            },
+                            "id": 46,
+                            "name": "MemberAccess",
+                            "src": "446:24:0",
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Notary.Record storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 10,
+                                      "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+                                      "value": "docHashes"
+                                    },
+                                    "id": 43,
+                                    "name": "Identifier",
+                                    "src": "446:9:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 36,
+                                      "type": "bytes32",
+                                      "value": "hash"
+                                    },
+                                    "id": 44,
+                                    "name": "Identifier",
+                                    "src": "456:4:0"
+                                  }
+                                ],
+                                "id": 45,
+                                "name": "IndexAccess",
+                                "src": "446:15:0"
+                              }
+                            ]
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 5,
+                              "type": "uint256",
+                              "value": "hash",
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "blockNumber"
+                            },
+                            "id": 50,
+                            "name": "MemberAccess",
+                            "src": "472:27:0",
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Notary.Record storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 10,
+                                      "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+                                      "value": "docHashes"
+                                    },
+                                    "id": 47,
+                                    "name": "Identifier",
+                                    "src": "472:9:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 36,
+                                      "type": "bytes32",
+                                      "value": "hash"
+                                    },
+                                    "id": 48,
+                                    "name": "Identifier",
+                                    "src": "482:4:0"
+                                  }
+                                ],
+                                "id": 49,
+                                "name": "IndexAccess",
+                                "src": "472:15:0"
+                              }
+                            ]
+                          }
+                        ],
+                        "id": 51,
+                        "name": "TupleExpression",
+                        "src": "445:55:0"
+                      }
+                    ],
+                    "id": 52,
+                    "name": "Return",
+                    "src": "438:62:0"
+                  }
+                ],
+                "id": 53,
+                "name": "Block",
+                "src": "432:73:0"
+              }
+            ],
+            "id": 54,
+            "name": "FunctionDefinition",
+            "src": "360:145:0"
+          }
+        ],
+        "id": 55,
+        "name": "ContractDefinition",
+        "src": "26:482:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            116
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            60,
+            116
+          ],
+          "name": "Notary",
+          "scope": 61
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "Notary.Record",
+              "name": "Record",
+              "scope": 56,
+              "visibility": "public",
+              "arguments": [
+                null
+              ]
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "Ownable",
+                  "scope": 7,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "contract Ownable",
+                  "value": null,
+                  "visibility": "internal",
+                  "contractScope": null,
+                  "referencedDeclaration": 116
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 3,
+                    "name": "ElementaryTypeName",
+                    "src": "128:4:0"
+                  }
+                ],
+                "id": 3,
+                "name": "UserDefinedTypeName",
+                "src": "104:7:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "blockNumber",
+                  "scope": 7,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 5,
+                    "name": "ElementaryTypeName",
+                    "src": "149:4:0"
+                  }
+                ],
+                "id": 6,
+                "name": "VariableDeclaration",
+                "src": "149:16:0"
+              }
+            ],
+            "id": 4,
+            "name": "InheritanceSpecifier",
+            "src": "104:7:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "Record",
+              "scope": 60,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+              "value": null,
+              "visibility": "public",
+              "canonicalName": "Notary.Record"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "uint256",
+                  "constant": false,
+                  "name": "mineTime",
+                  "scope": 9,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 5,
+                    "name": "ElementaryTypeName",
+                    "src": "138:4:0"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Record",
+                      "referencedDeclaration": 7,
+                      "type": "struct Notary.Record storage pointer"
+                    },
+                    "id": 9,
+                    "name": "UserDefinedTypeName",
+                    "src": "194:6:0"
+                  }
+                ],
+                "id": 6,
+                "name": "VariableDeclaration",
+                "src": "138:13:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "blockNumber",
+                  "scope": 9,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 7,
+                    "name": "ElementaryTypeName",
+                    "src": "159:4:0"
+                  }
+                ],
+                "id": 8,
+                "name": "VariableDeclaration",
+                "src": "159:16:0"
+              }
+            ],
+            "id": 9,
+            "name": "StructDefinition",
+            "src": "116:64:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "docHashes",
+              "payable": false,
+              "scope": 60,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "private",
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+              "value": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ],
+                  "type": "mapping(bytes32 => struct Notary.Record storage ref)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes32",
+                      "type": "bytes32"
+                    },
+                    "id": 10,
+                    "name": "ElementaryTypeName",
+                    "src": "193:7:0"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Record",
+                      "referencedDeclaration": 9,
+                      "type": "struct Notary.Record storage pointer"
+                    },
+                    "id": 11,
+                    "name": "UserDefinedTypeName",
+                    "src": "204:6:0"
+                  }
+                ],
+                "id": 12,
+                "name": "Mapping",
+                "src": "184:27:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 13,
+                "name": "ParameterList",
+                "src": "242:0:0"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 14,
+                "name": "Block",
+                "src": "242:24:0"
+              }
+            ],
+            "id": 13,
+            "name": "VariableDeclaration",
+            "src": "184:45:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "Notary",
+              "payable": false,
+              "scope": 60,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "hash",
+                      "scope": 35,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 16,
+                        "name": "ElementaryTypeName",
+                        "src": "291:7:0"
+                      }
+                    ],
+                    "id": 17,
+                    "name": "VariableDeclaration",
+                    "src": "291:12:0"
+                  }
+                ],
+                "id": 14,
+                "name": "ParameterList",
+                "src": "249:2:0",
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                }
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 15,
+                "name": "ParameterList",
+                "src": "252:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        21
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "newRecord",
+                          "scope": 35,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "struct Notary.Record memory",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "Record",
+                              "referencedDeclaration": 7,
+                              "type": "struct Notary.Record storage pointer"
+                            },
+                            "id": 20,
+                            "name": "UserDefinedTypeName",
+                            "src": "311:6:0"
+                          }
+                        ],
+                        "id": 21,
+                        "name": "VariableDeclaration",
+                        "src": "311:23:0"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": true,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "struct Notary.Record memory",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7,
+                              "type": "type(struct Notary.Record storage pointer)",
+                              "value": "Record"
+                            },
+                            "id": 22,
+                            "name": "Identifier",
+                            "src": "337:6:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 126,
+                              "type": "uint256",
+                              "value": "now"
+                            },
+                            "id": 23,
+                            "name": "Identifier",
+                            "src": "344:3:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "number",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 116,
+                                  "type": "block",
+                                  "value": "block"
+                                },
+                                "id": 24,
+                                "name": "Identifier",
+                                "src": "349:5:0"
+                              }
+                            ],
+                            "id": 25,
+                            "name": "MemberAccess",
+                            "src": "349:12:0"
+                          }
+                        ],
+                        "id": 26,
+                        "name": "FunctionCall",
+                        "src": "337:25:0"
+                      }
+                    ],
+                    "id": 27,
+                    "name": "VariableDeclarationStatement",
+                    "src": "311:51:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "struct Notary.Record storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "struct Notary.Record storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 11,
+                                  "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+                                  "value": "docHashes"
+                                },
+                                "id": 28,
+                                "name": "Identifier",
+                                "src": "368:9:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 17,
+                                  "type": "bytes32",
+                                  "value": "hash"
+                                },
+                                "id": 29,
+                                "name": "Identifier",
+                                "src": "378:4:0"
+                              }
+                            ],
+                            "id": 30,
+                            "name": "IndexAccess",
+                            "src": "368:15:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 21,
+                              "type": "struct Notary.Record memory",
+                              "value": "newRecord"
+                            },
+                            "id": 31,
+                            "name": "Identifier",
+                            "src": "386:9:0"
+                          }
+                        ],
+                        "id": 32,
+                        "name": "Assignment",
+                        "src": "368:27:0"
+                      }
+                    ],
+                    "id": 33,
+                    "name": "ExpressionStatement",
+                    "src": "368:27:0"
+                  }
+                ],
+                "id": 16,
+                "name": "Block",
+                "src": "252:24:0",
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                }
+              }
+            ],
+            "id": 17,
+            "name": "FunctionDefinition",
+            "src": "234:42:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "addDocHash",
+              "payable": false,
+              "scope": 60,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "hash",
+                      "scope": 39,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 18,
+                        "name": "ElementaryTypeName",
+                        "src": "301:7:0"
+                      }
+                    ],
+                    "id": 19,
+                    "name": "VariableDeclaration",
+                    "src": "301:12:0"
+                  }
+                ],
+                "id": 20,
+                "name": "ParameterList",
+                "src": "300:14:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 55,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 39,
+                        "name": "ElementaryTypeName",
+                        "src": "458:4:0"
+                      }
+                    ],
+                    "id": 40,
+                    "name": "VariableDeclaration",
+                    "src": "458:4:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 55,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 41,
+                        "name": "ElementaryTypeName",
+                        "src": "464:4:0"
+                      }
+                    ],
+                    "id": 42,
+                    "name": "VariableDeclaration",
+                    "src": "464:4:0"
+                  }
+                ],
+                "id": 23,
+                "name": "ParameterList",
+                "src": "324:0:0",
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                }
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 43,
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 90,
+                      "type": "modifier ()",
+                      "value": "onlyOwner"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isInlineArray": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "tuple(uint256,uint256)"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "mineTime",
+                              "referencedDeclaration": 4,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Notary.Record storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 11,
+                                      "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+                                      "value": "docHashes"
+                                    },
+                                    "id": 44,
+                                    "name": "Identifier",
+                                    "src": "484:9:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 37,
+                                      "type": "bytes32",
+                                      "value": "hash"
+                                    },
+                                    "id": 45,
+                                    "name": "Identifier",
+                                    "src": "494:4:0"
+                                  }
+                                ],
+                                "id": 46,
+                                "name": "IndexAccess",
+                                "src": "484:15:0"
+                              }
+                            ],
+                            "id": 47,
+                            "name": "MemberAccess",
+                            "src": "484:24:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "blockNumber",
+                              "referencedDeclaration": 6,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Notary.Record storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 11,
+                                      "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+                                      "value": "docHashes"
+                                    },
+                                    "id": 48,
+                                    "name": "Identifier",
+                                    "src": "510:9:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 37,
+                                      "type": "bytes32",
+                                      "value": "hash"
+                                    },
+                                    "id": 49,
+                                    "name": "Identifier",
+                                    "src": "520:4:0"
+                                  }
+                                ],
+                                "id": 50,
+                                "name": "IndexAccess",
+                                "src": "510:15:0"
+                              }
+                            ],
+                            "id": 51,
+                            "name": "MemberAccess",
+                            "src": "510:27:0"
+                          }
+                        ],
+                        "id": 52,
+                        "name": "TupleExpression",
+                        "src": "483:55:0"
+                      }
+                    ],
+                    "id": 21,
+                    "name": "Identifier",
+                    "src": "315:9:0"
+                  }
+                ],
+                "id": 22,
+                "name": "ModifierInvocation",
+                "src": "315:9:0",
+                "attributes": {
+                  "arguments": [
+                    null
+                  ]
+                }
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        25
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "newRecord",
+                          "scope": 39,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "struct Notary.Record memory",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "Record",
+                              "referencedDeclaration": 9,
+                              "type": "struct Notary.Record storage pointer"
+                            },
+                            "id": 24,
+                            "name": "UserDefinedTypeName",
+                            "src": "330:6:0"
+                          }
+                        ],
+                        "id": 25,
+                        "name": "VariableDeclaration",
+                        "src": "330:23:0"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": true,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "struct Notary.Record memory",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 9,
+                              "type": "type(struct Notary.Record storage pointer)",
+                              "value": "Record"
+                            },
+                            "id": 26,
+                            "name": "Identifier",
+                            "src": "356:6:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 130,
+                              "type": "uint256",
+                              "value": "now"
+                            },
+                            "id": 27,
+                            "name": "Identifier",
+                            "src": "363:3:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "number",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 120,
+                                  "type": "block",
+                                  "value": "block"
+                                },
+                                "id": 28,
+                                "name": "Identifier",
+                                "src": "368:5:0"
+                              }
+                            ],
+                            "id": 29,
+                            "name": "MemberAccess",
+                            "src": "368:12:0"
+                          }
+                        ],
+                        "id": 30,
+                        "name": "FunctionCall",
+                        "src": "356:25:0"
+                      }
+                    ],
+                    "id": 31,
+                    "name": "VariableDeclarationStatement",
+                    "src": "330:51:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "struct Notary.Record storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "struct Notary.Record storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 13,
+                                  "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+                                  "value": "docHashes"
+                                },
+                                "id": 32,
+                                "name": "Identifier",
+                                "src": "387:9:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 19,
+                                  "type": "bytes32",
+                                  "value": "hash"
+                                },
+                                "id": 33,
+                                "name": "Identifier",
+                                "src": "397:4:0"
+                              }
+                            ],
+                            "id": 34,
+                            "name": "IndexAccess",
+                            "src": "387:15:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 25,
+                              "type": "struct Notary.Record memory",
+                              "value": "newRecord"
+                            },
+                            "id": 35,
+                            "name": "Identifier",
+                            "src": "405:9:0"
+                          }
+                        ],
+                        "id": 36,
+                        "name": "Assignment",
+                        "src": "387:27:0"
+                      }
+                    ],
+                    "id": 37,
+                    "name": "ExpressionStatement",
+                    "src": "387:27:0"
+                  }
+                ],
+                "id": 38,
+                "name": "Block",
+                "src": "324:96:0"
+              }
+            ],
+            "id": 39,
+            "name": "FunctionDefinition",
+            "src": "280:140:0"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "findDocHash",
+              "payable": false,
+              "scope": 60,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "hash",
+                      "scope": 59,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 40,
+                        "name": "ElementaryTypeName",
+                        "src": "446:7:0"
+                      }
+                    ],
+                    "id": 41,
+                    "name": "VariableDeclaration",
+                    "src": "446:12:0"
+                  }
+                ],
+                "id": 42,
+                "name": "ParameterList",
+                "src": "445:14:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 59,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 43,
+                        "name": "ElementaryTypeName",
+                        "src": "477:4:0"
+                      }
+                    ],
+                    "id": 44,
+                    "name": "VariableDeclaration",
+                    "src": "477:4:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 59,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 45,
+                        "name": "ElementaryTypeName",
+                        "src": "483:4:0"
+                      }
+                    ],
+                    "id": 46,
+                    "name": "VariableDeclaration",
+                    "src": "483:4:0"
+                  }
+                ],
+                "id": 47,
+                "name": "ParameterList",
+                "src": "476:12:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 47
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isInlineArray": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "tuple(uint256,uint256)"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "mineTime",
+                              "referencedDeclaration": 6,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Notary.Record storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 13,
+                                      "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+                                      "value": "docHashes"
+                                    },
+                                    "id": 48,
+                                    "name": "Identifier",
+                                    "src": "503:9:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 41,
+                                      "type": "bytes32",
+                                      "value": "hash"
+                                    },
+                                    "id": 49,
+                                    "name": "Identifier",
+                                    "src": "513:4:0"
+                                  }
+                                ],
+                                "id": 50,
+                                "name": "IndexAccess",
+                                "src": "503:15:0"
+                              }
+                            ],
+                            "id": 51,
+                            "name": "MemberAccess",
+                            "src": "503:24:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "blockNumber",
+                              "referencedDeclaration": 8,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Notary.Record storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 13,
+                                      "type": "mapping(bytes32 => struct Notary.Record storage ref)",
+                                      "value": "docHashes"
+                                    },
+                                    "id": 52,
+                                    "name": "Identifier",
+                                    "src": "529:9:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 41,
+                                      "type": "bytes32",
+                                      "value": "hash"
+                                    },
+                                    "id": 53,
+                                    "name": "Identifier",
+                                    "src": "539:4:0"
+                                  }
+                                ],
+                                "id": 54,
+                                "name": "IndexAccess",
+                                "src": "529:15:0"
+                              }
+                            ],
+                            "id": 55,
+                            "name": "MemberAccess",
+                            "src": "529:27:0"
+                          }
+                        ],
+                        "id": 56,
+                        "name": "TupleExpression",
+                        "src": "502:55:0"
+                      }
+                    ],
+                    "id": 57,
+                    "name": "Return",
+                    "src": "495:62:0"
+                  }
+                ],
+                "id": 58,
+                "name": "Block",
+                "src": "489:73:0"
+              }
+            ],
+            "id": 59,
+            "name": "FunctionDefinition",
+            "src": "424:138:0"
+          }
+        ],
+        "id": 60,
+        "name": "ContractDefinition",
+        "src": "85:480:0"
+      }
+    ],
+    "id": 56,
+    "name": "SourceUnit",
+    "src": "0:509:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+  },
+  "networks": {
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0x62dbf3f3ff221e383d7c696e706356cdb86fae56"
+    },
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x345ca3e014aaf5dca488057592ee47305d9b3e10"
+    },
+    "1512234956773": {
+      "events": {},
+      "links": {},
+      "address": "0xc104748fc4f545832a5c67875360d38df52ffd54"
+    },
+    "1512243975354": {
+      "events": {},
+      "links": {},
+      "address": "0x81699b72b133f3def24b2a7b80aef7539bc3081f"
+    },
+    "1512313678420": {
+      "events": {},
+      "links": {},
+      "address": "0x3b8279e02624b54ae52c0454aced56c30ea6dcaf"
+    },
+    "1512332843302": {
+      "events": {},
+      "links": {},
+      "address": "0xfa62f7d38f67f48dcf4962438c2b4837dc80bddd"
+    }
+  },
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2017-12-23T19:18:28.655Z"
+}
